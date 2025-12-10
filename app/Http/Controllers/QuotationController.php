@@ -39,6 +39,7 @@ class QuotationController extends Controller
             'mode_of_payment' => 'required|string',
             'plan_id' => 'required',
             'subplan' => 'required',
+            'email' => 'required|email|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -57,6 +58,7 @@ class QuotationController extends Controller
         $quotation->sales_by = $request->user()->id;
         $quotation->plan_id=$request->plan_id;
         $quotation->sub_plan_id=$request->subplan;
+        $quotation->email = $request->email;
         $quotation->status = 1;
     
         $quotation->save();

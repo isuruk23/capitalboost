@@ -83,6 +83,9 @@
 
 <script>
 $(document).ready(function(){
+    $('#shift_menu_link').addClass('active');
+    $('#shift_menu_link_icon').addClass('active');
+    $('#work_shift_link_ap').addClass('navbtnactive');
 
 });
 </script>

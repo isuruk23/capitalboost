@@ -231,9 +231,9 @@
     <script>
         $(document).ready(function(){
 
-            $('#organization_menu_link').addClass('active');
-            $('#organization_menu_link_icon').addClass('active');
-            $('#banklink').addClass('navbtnactive');
+            $('#shift_menu_link').addClass('active');
+            $('#shift_menu_link_icon').addClass('active');
+            $('#work_shift_link').addClass('navbtnactive');
 
            
 

@@ -13,7 +13,7 @@
         <a role="button" class="btn navbtncolor" href="{{ route('quotaionappove') }}" id="work_shift_link">Approve<span class="caret"></span></a>
         @endcan
         @can('approved-list')
-        <a role="button" class="btn navbtncolor" href="{{ route('quotaionappovedview') }}" id="work_shift_link">Approved Quotaion<span class="caret"></span></a>
+        <a role="button" class="btn navbtncolor" href="{{ route('quotaionappovedview') }}" id="work_shift_link_ap">Approved Quotaion<span class="caret"></span></a>
         @endcan
         @can('plan-instalment')
         <a role="button" class="btn navbtncolor" href="{{ route('installmentpayments') }}" id="additional_shift_link">Installment Payment Details <span class="caret"></span></a>
