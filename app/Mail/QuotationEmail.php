@@ -2,23 +2,21 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
 
 class QuotationEmail extends Mailable
 {
-    use Queueable, SerializesModels;
-
     public $quotation;
     public $password;
     public $pdfPath;
+    public $loginUrl;
 
     public function __construct($quotation, $password, $pdfPath)
     {
         $this->quotation = $quotation;
         $this->password = $password;
         $this->pdfPath = $pdfPath;
+        $this->loginUrl = route('customer.login'); // ✅ add this
     }
 
     public function build()

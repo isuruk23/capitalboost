@@ -1325,3 +1325,11 @@ Route::post('/password-reset', 'Auth\UserPasswordResetController@reset')->name('
 
 Route::get('payallocation',['uses' => 'SalaryAllocation@payallocation', 'as' => 'payallocation']);
 Route::post('/get_employee_allocation', 'SalaryAllocation@get_employee_allocation')->name('get_employee_allocation');
+
+Route::get('/customer/login', [CustomerAuthController::class, 'showLogin'])->name('customer.login');
+Route::post('/customer/login', [CustomerAuthController::class, 'login'])->name('customer.login.submit');
+Route::post('/customer/logout', [CustomerAuthController::class, 'logout'])->name('customer.logout');
+Route::middleware('auth:customer')->group(function () {
+    Route::get('/customer/dashboard', [CusDashboardController::class, 'index'])
+        ->name('customer.dashboard');
+});
