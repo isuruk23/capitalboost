@@ -31,11 +31,10 @@
     27 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     28 => 'Barryvdh\\DomPDF\\ServiceProvider',
     29 => 'Yajra\\Datatables\\DatatablesServiceProvider',
-    30 => 'ConsoleTVs\\Charts\\ChartsServiceProvider',
-    31 => 'Collective\\Html\\HtmlServiceProvider',
-    32 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
-    33 => 'Spatie\\Permission\\PermissionServiceProvider',
-    34 => 'Laravel\\Passport\\PassportServiceProvider',
+    30 => 'Collective\\Html\\HtmlServiceProvider',
+    31 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    32 => 'Spatie\\Permission\\PermissionServiceProvider',
+    33 => 'Laravel\\Passport\\PassportServiceProvider',
   ),
   'eager' => 
   array (
@@ -56,10 +55,9 @@
     14 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     15 => 'Barryvdh\\DomPDF\\ServiceProvider',
     16 => 'Yajra\\Datatables\\DatatablesServiceProvider',
-    17 => 'ConsoleTVs\\Charts\\ChartsServiceProvider',
-    18 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
-    19 => 'Spatie\\Permission\\PermissionServiceProvider',
-    20 => 'Laravel\\Passport\\PassportServiceProvider',
+    17 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    18 => 'Spatie\\Permission\\PermissionServiceProvider',
+    19 => 'Laravel\\Passport\\PassportServiceProvider',
   ),
   'deferred' => 
   array (

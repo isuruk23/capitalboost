@@ -6,12 +6,15 @@ use App\Quotation;
 use App\Investment;
 use App\Investmentplan;
 use App\Customer;
+use App\Mail\QuotationEmail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use PDF;
 use Carbon\Carbon;
 use NumberToWords\NumberToWords;
@@ -30,7 +33,6 @@ class QuotationController extends Controller
 
     public function store(Request $request)
     {
-       
         $validator = Validator::make($request->all(), [
             'name_with_initial' => 'required|string|max:255',
             'address' => 'required|string',
@@ -39,29 +41,52 @@ class QuotationController extends Controller
             'mode_of_payment' => 'required|string',
             'plan_id' => 'required',
             'subplan' => 'required',
+            'email' => 'required|email|max:255',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()->all()], 422);
         }
 
-
-
         $quotation = new Quotation();
         $quotation->name_with_initial = $request->name_with_initial;
         $quotation->nic_no = $request->nic_no;
-        $quotation->address = $request->address;       
+        $quotation->address = $request->address;
         $quotation->period = 0;
         $quotation->paying_term = $request->paying_term;
         $quotation->mode_of_payment = $request->mode_of_payment;
         $quotation->sales_by = $request->user()->id;
-        $quotation->plan_id=$request->plan_id;
-        $quotation->sub_plan_id=$request->subplan;
+        $quotation->plan_id = $request->plan_id;
+        $quotation->sub_plan_id = $request->subplan;
+        $quotation->email = $request->email;
         $quotation->status = 1;
-    
         $quotation->save();
-        return response()->json(['success' => true, 'message' => 'Quotation Created!']);
+
+        $plainPassword = generatePassword(8);
+
+        $customer = new Customer();
+        $customer->name_with_initial = $request->name_with_initial;
+        $customer->fullname = $request->name_with_initial; // if fullname exists
+        $customer->address = $request->address;
+        $customer->nic_no = $request->nic_no;
+        $customer->email = $request->email;
+
+        $customer->password = Hash::make($plainPassword);  // hashed
+        $customer->password_plain = $plainPassword;        // readable password
+
+        $customer->save();
+
+        // Generate PDF
+        $pdf = PDF::loadView('Quotations.quotation', ['quotaion' => $quotation]);
+        $pdfPath = storage_path("app/public/quotation_{$quotation->id}.pdf");
+        $pdf->save($pdfPath);
+
+        // Email with login credentials
+        Mail::to($quotation->email)->send(new QuotationEmail($quotation, $plainPassword, $pdfPath));
+
+        return response()->json(['success' => true, 'message' => 'Quotation Created & Login Sent!']);
     }
+
     public function dashboard(){
       
         return view('Dashboard.quotation');

@@ -180,7 +180,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
-        ConsoleTVs\Charts\ChartsServiceProvider::class,
+        // ConsoleTVs\Charts\ChartsServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
 
@@ -242,7 +242,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
-        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        // 'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 

@@ -33,7 +33,8 @@
                                                 <th>NIC</th>   
                                                 <th>Invenstment Plan</th> 
                                                 <th>Paying Term</th>   
-                                                <th>Payment Mode</th>   
+                                                <th>Payment Mode</th> 
+                                                <th>E-mail</th>  
                                                 <th>Action</th>   
                                             </tr>
                                         </thead>
@@ -49,6 +50,7 @@
                                                 <td>{{$quotation->planName}}</td>
                                                 <td>{{$quotation->term_of_years}} Years</td>
                                                 <td>{{$quotation->mode_of_payment}}</td>
+                                                <td>{{$quotation->email}}</td>
                                                 <td>  
                                                     <a href="generatequotation/{{$quotation->id}}" name="generate" id="{{$quotation->id}}" class="generate btn btn-outline-primary btn-sm" type="submit"><i class="fa fa-file"></i></a>
                                                     <button name="edit" id="{{$quotation->id}}" class="edit btn btn-outline-primary btn-sm" type="submit"><i class="fas fa-pencil-alt"></i></button>
@@ -178,6 +180,16 @@
                                                     </div>
                                                 @endif
                                             </div>
+
+                                            <div class="form-group col-6 col-sm-12 col-md-6 col-lg-6">
+                                                <label for="email">E-mail</label>
+                                                <input type="text" class="form-control form-control-sm {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" name="email" value="{{ old('email') }}" >
+                                                @if ($errors->has('email'))
+                                                    <div class="invalid-feedback">
+                                                        {{ $errors->first('email') }}
+                                                    </div>
+                                                @endif
+                                            </div>
                                             </div>
                                             
                                             <input type="hidden" name="action" id="action" value="Add" />
@@ -299,9 +311,9 @@
 
 
 
-            $('#organization_menu_link').addClass('active');
-            $('#organization_menu_link_icon').addClass('active');
-            $('#banklink').addClass('navbtnactive');
+            $('#shift_menu_link').addClass('active');
+            $('#shift_menu_link_icon').addClass('active');
+            $('#shift_link').addClass('navbtnactive');
 
            
 

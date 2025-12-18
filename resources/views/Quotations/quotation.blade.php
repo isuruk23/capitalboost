@@ -87,6 +87,11 @@
                     <td> : </td>
                     <td>{{ $quotaion->nic_no }}</td>
                 </tr>
+                <tr>
+                    <td><span class="text-bold">E-mail :</span></td>
+                    <td> : </td>
+                    <td>{{ $quotaion->email }}</td>
+                </tr>
                 @if(in_array($quotaion->planid, [4]))
                 <tr>
                     <td><span class="text-bold">Monthly Cultivation Contribution :</span></td>
